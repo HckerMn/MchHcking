@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block title %}TeamBox{% endblock %}
+
+{% block bodyid %}index{% endblock %}
+
+{% block content %}
+
+<html>
+
+	<head>
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+
+		<title>TeamBox</title>
+
+	</head>
+
+	<body></body>
+
+		<h1>SMART ROOM</h1>
+
+        <div>
+
+			<h2>Control Panel</h2>
+
+		</div>
+
+		<div>
+
+			<p>LED Control<p>
+
+			<span id="thestateofled">OFF</span>
+
+			<button id="button1" onclick="myfunction()">Turn ON</button>
+
+		</div>
+
+		<div>
+
+			<p>FAN Control<p>
+
+			{% if temperature >35 %}
+                It is hot
+            {% elif temperature <= 35 and temperature >25 %}
+                Its is warm
+            {% else %}
+                It is cold
+            {% endif %}
+
+            <button id="button2" onclick="hello()">Turn ON</button>
+
+		</div>
+
+		<script
+
+ 			src="http://code.jquery.com/jquery-3.2.1.min.js"
+
+ 			integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+
+ 			crossorigin="anonymous">
+
+ 		</script>
+
+ 		<script>
+
+		function myfunction(){
+
+			var myButton = document.getElementById("button1");
+
+			if (myButton.innerText == "Turn ON") {
+
+				myButton.innerText = "Turn OFF";
+
+			  	$.post("/led",{arg: "on" } );
+
+			  }	else {
+
+			  	myButton.innerText = "Turn ON";
+			  	$.post("/led",{arg: "off" } );
+
+			  }
+
+			}
+
+		function hello(){
+
+			var myButton = document.getElementById("button2");
+
+			if (myButton.innerText == "Turn ON") {
+
+				myButton.innerText = "Turn OFF";
+
+			  	} else {
+
+			  	myButton.innerText = "Turn ON";
+
+			   }
+			}
+
+		function refresh() {
+
+			$.getJSON("/ledstate",
+
+				function(data) {
+
+					var myButton = document.getElementById("button1")
+
+					var currentStateText = document.getElementById("thestateofled")
+
+					var currentState = data.result
+
+					console.log(currentState);
+
+					if (currentState == 1){
+
+						currentStateText.innerText = "ON";
+
+						myButton.innerText = "Turn OFF";
+
+					} else {
+
+						currentStateText.innerText = "OFF";
+
+						myButton.innerText = "Turn ON";
+
+					}
+
+				}
+
+			)
+
+		 }
+
+		$(document).ready(refresh)
+
+		</script>
+
+	</body>
+
+</html>
+
+{% endblock %}

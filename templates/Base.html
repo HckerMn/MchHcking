@@ -1,0 +1,35 @@
+<!DOCTYPE>
+
+<html>
+
+	<head>
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+
+		<title>TeamBox</title>
+
+	</head>
+
+	<body id="{% block bodyid %}{% endblock %}">
+
+
+		<div>
+
+            <a href="/">Home</a>
+
+            <a href="/info">Info</a>
+
+      		<a href="/money">Sponsors</a>
+
+		    <a href="/form">Form</a>
+
+        </div>
+
+        {% block content %}{% endblock %}
+
+        {% include 'footer.html' %}
+
+    </body>
+
+</html>
+

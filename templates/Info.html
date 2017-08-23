@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Info{% endblock %}
+
+{% block bodyid %}info{% endblock %}
+
+{% block content %}
+
+<h1>INFORMATION</h1>
+
+<p id="ok">My name is {{my_name}} <br> Our team is the {{ team_name }} <br> Our project is {{ project_name }}</p>
+
+<p>The Highest temperature is:</p>
+    <p> {{ highest.temperature }} </p>
+    <p> {{ highest.reading_date }} </p>
+    <p>The Lowest temperature is:</p>
+    <p> {{ lowest.temperature }} </p>
+    <p> {{ lowest.reading_date }} </p>
+
+
+
+<div>
+
+    <table>
+
+        <thead>
+
+            <th>id</th>
+
+            <th>date</th>
+
+            <th>temperature</th>
+
+        </thead>
+
+        <tbody>
+
+            {% for record in records %}
+
+                <tr>
+
+                    <td>{{ loop.index }}</td>
+
+                    <td>{{ record.reading_date }}</td>
+
+                    <td>{{ record['temperature'] }}</td>
+
+                </tr>
+
+            {% else %}
+
+                <tr>
+
+                    <td colspan="2">There is no data</td>
+
+                </tr>
+
+            {% endfor %}
+
+         </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}
+

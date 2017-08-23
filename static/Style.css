@@ -1,0 +1,109 @@
+		body#info {
+
+			background-color: gray;
+
+			background-image:url("/static/Info-icon.svg.png");
+
+			background-repeat: no-repeat;
+
+    		background-attachment: fixed;
+
+    		background-position: center;
+
+    	}
+
+		body#sponsor {
+
+			background-color: gray;
+
+			background-image:url("/static/Cost-Of-Wedding.jpg");
+
+			background-repeat: no-repeat;
+
+    		background-attachment: fixed;
+
+    		background-position: center;
+
+		}
+
+		body#index {
+
+			background-color: gray;
+
+			background-image:url("/static/somethinglolol.png");
+
+    		background-attachment: fixed;
+
+    		background-position: center;
+
+		}
+
+		h1 {
+
+			color: red;
+
+			font-size:50px;
+
+			text-align: center;
+
+			font-family: Damascus;
+
+			border-color: black;
+
+			border-style: ridge;
+
+			border-width: 10px;
+
+		}
+
+		div {
+
+			border-color: black;
+
+			border-style: ridge;
+
+			text-align: center;
+
+			border-width: 5px;
+
+			width: 178px;
+
+		}
+
+		span {
+
+			border-color: black;
+
+			border-style: ridge;
+
+			border-width: 5px;
+
+			text-align: center;
+
+		}
+
+		h2 {
+
+			color: red;
+
+			font-size:25px;
+
+			text-align: center;
+
+			font-family: Damascus;
+
+		}
+
+		p#ok {
+
+            color: black;
+
+            font-family: Futura;
+
+            font-size: 20px;
+
+        }
+
+        table, td, th {
+            border:solid 1px black;
+        }
