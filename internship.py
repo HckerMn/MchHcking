@@ -65,13 +65,13 @@ def about():
 
     conn.commit()
     conn.close()
-    return render_template('Info.html', my_name='Odin', team_name='Box', project_name='SmartRoom', records=records,
+    return render_template('info.html', my_name='Odin', team_name='Box', project_name='SmartRoom', records=records,
                            highest=max, lowest=min, )
 
 
 @app.route('/money')
 def me():
-    return render_template('Sponsors.html')
+    return render_template('sponsors.html')
 
 @app.route('/form')
 @requires_auth
