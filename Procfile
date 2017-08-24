@@ -1,1 +1,1 @@
-web: gunicorn Internship:app
+web: gunicorn internship:app
