@@ -82,7 +82,7 @@ def posture():
 @requires_auth
 def grab():
     temperature = request.form['temperature']
-    current_date = datetime.date.today().isoformat()
+    current_date = datetime.datetime.now()
     conn = psycopg2.connect(connection_string)
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
@@ -113,6 +113,10 @@ def ledstate():
     url = "https://api.particle.io/v1/devices/%s/ledstate?access_token=%s" % (device_id, access_token)
     gcontext = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
     return urlopen(url, context=gcontext).read()
+
+@app.template_filter('format_date')
+def reverse_filter(record_date):
+    return record_date.strftime('%Y-%m-%d %H:%M:%S')
 
 if __name__ == '__main__':
     app.run()
