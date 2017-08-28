@@ -120,7 +120,7 @@ def reverse_filter(record_date):
 
 @app.route('/apihandle', methods=['POST'])
 @requires_auth
-def grab():
+def apigrab():
     temperature = request.form['temperature']
     current_date = datetime.datetime.now()
     conn = psycopg2.connect(connection_string)
