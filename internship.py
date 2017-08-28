@@ -50,7 +50,7 @@ def about():
     records = ['12', '23', '43', '29', '59']
     conn = psycopg2.connect(connection_string)
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cursor.execute('SELECT * FROM temperature ORDER BY reading_date')
+    cursor.execute('SELECT * FROM temperature ORDER BY reading_date DESC')
     records = cursor.fetchall()
 
     cursor.execute('SELECT * FROM temperature ORDER BY temperature DESC LIMIT 1')
@@ -117,6 +117,22 @@ def ledstate():
 @app.template_filter('format_date')
 def reverse_filter(record_date):
     return record_date.strftime('%Y-%m-%d %H:%M:%S')
+
+@app.route('/apihandle', methods=['POST'])
+@requires_auth
+def grab():
+    temperature = request.form['temperature']
+    current_date = datetime.datetime.now()
+    conn = psycopg2.connect(connection_string)
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+
+    query = 'INSERT INTO temperature (reading_date, temperature)  VALUES (\'%s\', %s)' % (current_date, temperature)
+    cursor.execute(query)
+    conn.commit()
+    conn.close()
+    return "OK"
+
+
 
 if __name__ == '__main__':
     app.run()
